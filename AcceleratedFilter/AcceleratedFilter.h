@@ -38,4 +38,10 @@ public:
 
 extern ACCELERATEDFILTER_API int nAcceleratedFilter;
 
+
+
+EXTERN_C ACCELERATEDFILTER_API void GrayScaleAverage(int * Src, int * Copy, int Stride, int height);
+
 ACCELERATEDFILTER_API int fnAcceleratedFilter(void);
+
+

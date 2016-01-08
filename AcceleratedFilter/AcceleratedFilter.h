@@ -40,7 +40,7 @@
 
 
 
-EXTERN_C ACCELERATEDFILTER_API void GrayScaleAverage(int * Src, int * Copy, int Stride, int height);
+EXTERN_C ACCELERATEDFILTER_API void GrayScaleAverage(int * Src, int * Copy, int Stride, int height, int stride);
 
 //ACCELERATEDFILTER_API int fnAcceleratedFilter(void);
 

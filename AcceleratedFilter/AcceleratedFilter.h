@@ -10,38 +10,38 @@
 #define ACCELERATEDFILTER_API __declspec(dllimport)
 #endif
 
-#include "Image.h"
+//#include "Image.h"
 
 // Cette classe est exportée de AcceleratedFilter.dll
-class ACCELERATEDFILTER_API AcceleratedFilter {
-public:
-   
-
-   
-
-	AcceleratedFilter(void);
-   static class GrayScale
-   {
-   public:
-      static int Average(Color Couleur);
-      static int Average(int Image[], int width, int height)
-      {
-         Color s;
-         s.
-      }
-
-   };
-
-      
-	// TODO: ajoutez ici vos méthodes.
-};
-
-extern ACCELERATEDFILTER_API int nAcceleratedFilter;
+//class ACCELERATEDFILTER_API AcceleratedFilter {
+//public:
+//   
+//
+//   
+//
+//	AcceleratedFilter(void);
+//   static class GrayScale
+//   {
+//   public:
+//      static int Average(Color Couleur);
+//      static int Average(int Image[], int width, int height)
+//      {
+//         Color s;
+//         s.
+//      }
+//
+//   };
+//
+//      
+//	// TODO: ajoutez ici vos méthodes.
+//};
+//
+//extern ACCELERATEDFILTER_API int nAcceleratedFilter;
 
 
 
 EXTERN_C ACCELERATEDFILTER_API void GrayScaleAverage(int * Src, int * Copy, int Stride, int height);
 
-ACCELERATEDFILTER_API int fnAcceleratedFilter(void);
+//ACCELERATEDFILTER_API int fnAcceleratedFilter(void);
 
 

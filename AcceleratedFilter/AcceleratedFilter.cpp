@@ -22,31 +22,35 @@ EXTERN_C
 		/*vector<unsigned int> image_src(Src, Src + sizeof(Src) / sizeof(Src[0]));
 		vector<unsigned int> image_cpy(Copy, Copy + sizeof(Copy) / sizeof(Copy[0]));*/
 
-		texture<uint_4, 2> t_src{ image_extent, Src, image_extent.size() * 4U, 8U };
-		texture<uint_4, 2> t_cpy{ image_extent, Copy, image_extent.size() * 4U, 8U };
+		//texture<uint_4, 2> t_src{ image_extent, Src, image_extent.size() * 4U, 8U };
+		//
+		//texture<uint_4, 2> t_cpy{ image_extent, Copy, image_extent.size() * 4U, 8U };
 
-		texture_view<const uint_4, 2> tv_src{ t_src };
-		texture_view<uint_4, 2> tv_cpy{ t_cpy };
+		//texture_view<const uint_4, 2> tv_src{ t_src };
+		//texture_view<uint_4, 2> tv_cpy{ t_cpy };
 
-		parallel_for_each(image_extent, [=](index<2> idx)restrict(amp){
-			uint_4 color = tv_src.get(idx);
-			//color.r = color.g = color.b = (color.r + color.g + color.b) / 3;
-			//color.r = ((color.r + color.g + color.b) / 3);
-			tv_cpy.set(idx, color);
-		});
+		//parallel_for_each(image_extent, [=](index<2> idx)restrict(amp){
+		//	uint_4 color = tv_src.get(idx);
+		//	//color.r = color.g = color.b = (color.r + color.g + color.b) / 3;
+		//	//color.r = ((color.r + color.g + color.b) / 3);
+		//	tv_cpy.set(idx, color);
+		//});
+		//copy(t_cpy, Copy, (unsigned int)sizeof(Copy));
 
-		//array_view<const uint_4, 2> texture_src{ image_extent, Src };
-	 //  array_view<uint_4, 2> texture_cpy(image_extent, Copy);
-	 //  texture_cpy.discard_data();
+	array_view<const int, 2> texture_src{ image_extent, Src };
+	   array_view<int, 2> texture_cpy(image_extent, Copy);
+	   texture_cpy.discard_data();
 
-	 //  parallel_for_each(image_extent, [=](index<2> idx)restrict(amp){
-		//   //uint_4 color = texture_src[idx];
-		//   //color.r = color.g = color.b = (color.r + color.g + color.b) / 3;
-		//   //color.r = ((color.r + color.g + color.b) / 3);
-		//   texture_cpy[idx].r = texture_cpy[idx].g = texture_cpy[idx].b = (texture_src[idx].r + texture_src[idx].g + texture_src[idx].b) / 3;
-	 //  });
+	   parallel_for_each(image_extent, [=](index<2> idx)restrict(amp){
+		   int color = texture_src[idx];
+		   texture_cpy[idx] = color;
+		   //uint_4 color = texture_src[idx];
+		   //color.r = color.g = color.b = (color.r + color.g + color.b) / 3;
+		   //color.r = ((color.r + color.g + color.b) / 3);
+		   //texture_cpy[idx]. = texture_cpy[idx].g = texture_cpy[idx].b = (texture_src[idx].r + texture_src[idx].g + texture_src[idx].b) / 3;
+	   });
 
-	 //  texture_cpy.synchronize();
+	   texture_cpy.synchronize();
 
 	   /*texture<uint_4, 2> texture_src(image_extent, Src, image_extent.size() * 4U, 8U);
 	   texture<uint_4, 2> texture_cpy(image_extent, Copy, image_extent.size() * 4U, 8U);
